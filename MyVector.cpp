@@ -5,25 +5,24 @@
 class MyVector {
 
 private:
-        unsigned int _size = 0;
-        unsigned int capacity;
-        int* vector_address;
+    unsigned int _size = 0;
+    unsigned int capacity;
+    int* vector_address;
 
 public:
-        MyVector();
-        int find(int x);
-        void insert(unsigned int pos);
-        void remove(unsigned int pos);
-        unsigned int size();
-        void resize_array();
-        void print();
-        void clear();
-        //void sort(std::string mode);
-        //reverse();
-        ~MyVector();
+    MyVector();
+    int find(int x);
+    void insert(unsigned int pos, int x);
+    void remove(unsigned int pos);
+    unsigned int size();
+    void print();
+    void clear();
+    //void sort(std::string mode);
+    //reverse();
+    ~MyVector();
 
 private:
-        void resize_array();
+    void resize_array();
 
 };
 
@@ -32,13 +31,13 @@ MyVector::MyVector() {
     vector_address = new int[capacity];
 }
 
-MyVector::size() {
+unsigned int MyVector::size() {
     return _size;
 }
 
 int MyVector::find(int x) {
-    if (size == 0) {
-        return -1
+    if (size() == 0) {
+        return -1;
     }
     for(unsigned int i = 0; i < size(); i++) {
         if(vector_address[i] == x) {
@@ -71,7 +70,7 @@ void MyVector::resize_array() {
     vector_address = new_vector_address;
 }
 
-void MyVector::insert(unsigned int pos) {
+void MyVector::insert(unsigned int pos, int x) {
 
     if (size() == capacity) {
         resize_array();
@@ -80,7 +79,7 @@ void MyVector::insert(unsigned int pos) {
     for (unsigned int i = size(); i > pos; i--) {
         vector_address[i] = vector_address[i-1];
     }
-    v[pos] = x;
+    vector_address[pos] = x;
     _size++;
 
 }
@@ -105,7 +104,14 @@ MyVector::~MyVector() {
 
 int main() {
 
-    
-
+    MyVector v;
+    for (int i = 0; i < 20; ++i) {
+        v.insert(0, 10*i);
+        v.print();
+    }
+    while(v.size() != 0) {
+        v.remove(0);
+        v.print();
+    }
     return 0;
 }
