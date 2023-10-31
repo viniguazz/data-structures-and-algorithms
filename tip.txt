@@ -1,4 +1,0 @@
-em C++: '' indica char
-        "" indica string
-
-        
